@@ -1,0 +1,41 @@
+# Strates de comparaison — France
+# Les strates servent uniquement à calculer des percentiles. Une institution est comparée à sa strate,
+# jamais à l'ensemble. Tranches inspirées des strates DGCL utilisées pour les ratios financiers [À VÉRIFIER].
+
+version: 0.1.0
+
+communes:
+  cle: population_legale        # source : INSEE populations légales, millésime le plus récent
+  tranches:
+    - {id: C1, min: 0,      max: 499}
+    - {id: C2, min: 500,    max: 1999}
+    - {id: C3, min: 2000,   max: 3499}
+    - {id: C4, min: 3500,   max: 4999}
+    - {id: C5, min: 5000,   max: 9999}
+    - {id: C6, min: 10000,  max: 19999}
+    - {id: C7, min: 20000,  max: 49999}
+    - {id: C8, min: 50000,  max: 99999}
+    - {id: C9, min: 100000, max: null}
+
+epci:
+  cle: population_legale
+  sous_cle: type_epci           # CC, CA, CU, métropole
+  tranches:
+    - {id: E1, min: 0,      max: 19999}
+    - {id: E2, min: 20000,  max: 49999}
+    - {id: E3, min: 50000,  max: 99999}
+    - {id: E4, min: 100000, max: 299999}
+    - {id: E5, min: 300000, max: null}
+
+departements:
+  cle: population_legale
+  tranches:
+    - {id: D1, min: 0,       max: 299999}
+    - {id: D2, min: 300000,  max: 799999}
+    - {id: D3, min: 800000,  max: null}
+
+regions:
+  cle: aucune                   # strate unique
+
+# Taille minimale d'une strate pour qu'un percentile soit affiché
+min_institutions_par_strate: 30

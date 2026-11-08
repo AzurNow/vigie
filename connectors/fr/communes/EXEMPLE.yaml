@@ -1,0 +1,22 @@
+# Fiche d'institution — EXEMPLE À COPIER
+# Renommer en <code_insee>.yaml. C'est le fichier qu'un contributeur crée pour « ajouter sa ville ».
+# Toutes les URL doivent pointer vers le site officiel de l'institution.
+
+code_insee: "00000"
+siren: "000000000"
+nom: Exemple-sur-Vigie
+type: commune
+connecteurs:
+  fr/pv-conseil:
+    pages:
+      - url: "https://www.exemple-sur-vigie.fr/vie-municipale/conseil-municipal/proces-verbaux"
+        selecteur_liens: "a[href$='.pdf']"
+        motif_date: "(\\d{4})[-_](\\d{2})[-_](\\d{2})"
+        type: pv_seance
+      - url: "https://www.exemple-sur-vigie.fr/vie-municipale/conseil-municipal/deliberations"
+        selecteur_liens: "a[href$='.pdf']"
+        motif_date: "(\\d{4})[-_](\\d{2})[-_](\\d{2})"
+        type: liste_deliberations
+notes: "Les PV antérieurs à 2022 sont dans une archive séparée, non couverte."
+verifie_le: "2026-11-07"
+verifie_par: "pseudo-du-contributeur"

@@ -1,0 +1,52 @@
+id: fr/decp
+version: 0.1.0
+protocol: 0.1
+kind: source
+nom: Données essentielles de la commande publique (consolidées)
+juridiction: FR
+editeur: "État (DAJ / Etalab) [À VÉRIFIER]"
+licence: "Licence Ouverte 2.0 [À VÉRIFIER]"
+obligation_legale: "Code de la commande publique, publication des données essentielles [À VÉRIFIER : articles]"
+description: >
+  Marchés publics au-dessus du seuil de publication, tous acheteurs, avec attributaires,
+  procédure, montant, durée et modifications. Source primaire de la phase 1.
+acces:
+  type: http
+  url: "[À VÉRIFIER] URL du jeu consolidé DECP sur data.gouv.fr (format DECP v2, JSON)"
+  format: json
+  schema: decp-v2
+  auth: aucune
+  frequence: quotidienne
+  taille_indicative: "plusieurs centaines de Mo ; prévoir téléchargement incrémental ou filtré"
+  user_agent: "vigie/{version} (+https://PROJET_URL)"
+  politesse: {requetes_par_seconde: 2, respecter_robots_txt: true}
+filtres:
+  - {champ: acheteur.siret, type: prefixe_siren}
+  - {champ: date_notification, type: periode}
+produit:
+  - {type: Contract, schema: ocds}
+  - {type: Organization, schema: ftm}
+champs_cles:
+  - id
+  - acheteur.siret
+  - acheteur.nom
+  - "attributaires[].siret"
+  - "attributaires[].nom"
+  - objet
+  - cpv
+  - procedure
+  - nature
+  - montant
+  - duree_mois
+  - date_notification
+  - date_publication
+  - "modifications[]"
+qualite_connue:
+  - "nombre_offres_recues souvent absent (→ A1 confiance basse sans BOAMP)"
+  - "modifications mal renseignées (→ D1/D2 confiance moyenne)"
+  - "doublons inter-profils d'acheteurs (→ G4 dédoublonne sur id + siret + date)"
+  - "montant parfois égal au maximum d'un accord-cadre (→ marquer montant_est_maximum)"
+parseur: vigie.connectors.fr.decp:parse
+provenance:
+  capturer: [url_finale, date_heure, etag, last_modified, content_length, sha256]
+tests: tests/connectors/fr/test_decp.py

@@ -1,0 +1,68 @@
+# Seuils réglementaires — France
+# TOUTES LES VALEURS SONT INDICATIVES ET À VÉRIFIER sur les sources officielles
+# (code de la commande publique, avis publiés au JORF pour les seuils européens, DAJ/economie.gouv.fr)
+# avant tout usage. Une règle ne lit jamais un seuil ailleurs qu'ici.
+#
+# Chaque seuil est daté : les règles prennent la valeur en vigueur à la date de notification du marché.
+# Montants en euros HT.
+
+version: 0.1.0
+pays: FR
+source_verification: "À compléter : URL de la page DAJ listant les seuils en vigueur"
+
+seuils:
+  # Dispense de publicité et de mise en concurrence préalables (tous acheteurs)
+  dispense_publicite:
+    - depuis: "2020-01-01"
+      valeur: 40000
+      note: "Relevé de 25 000 à 40 000 € HT fin 2019 [À VÉRIFIER]"
+  # Dispense spécifique travaux (mesure temporaire, à vérifier si toujours en vigueur et jusqu'à quand)
+  dispense_publicite_travaux:
+    - depuis: "2020-07-01"
+      valeur: 100000
+      jusqu_a: null
+      note: "Mesure temporaire reconduite plusieurs fois [À VÉRIFIER : date de fin]"
+  # Publication des DECP
+  publication_decp:
+    - depuis: "2018-10-01"
+      valeur: 25000
+      note: "[À VÉRIFIER]"
+  # Publicité adaptée obligatoire (BOAMP ou JAL) pour les collectivités
+  publicite_adaptee_collectivites:
+    - depuis: "2010-01-01"
+      valeur: 90000
+      note: "[À VÉRIFIER]"
+  # Seuils européens (procédures formalisées) — révisés tous les deux ans par la Commission
+  ue_fournitures_services_etat:
+    - depuis: "2024-01-01"
+      valeur: 143000
+      note: "Période 2024-2025 [À VÉRIFIER] ; valeurs 2026-2027 à ajouter"
+  ue_fournitures_services_collectivites:
+    - depuis: "2024-01-01"
+      valeur: 221000
+      note: "Période 2024-2025 [À VÉRIFIER]"
+  ue_fournitures_services_entites_adjudicatrices:
+    - depuis: "2024-01-01"
+      valeur: 443000
+      note: "Période 2024-2025 [À VÉRIFIER]"
+  ue_travaux:
+    - depuis: "2024-01-01"
+      valeur: 5538000
+      note: "Période 2024-2025 [À VÉRIFIER]"
+  # Subventions : publication des données essentielles des conventions
+  publication_subventions:
+    - depuis: "2017-08-01"
+      valeur: 23000
+      note: "[À VÉRIFIER]"
+
+# Délais minimaux de remise des offres (jours) par procédure — [À VÉRIFIER], valeurs UE usuelles
+delais_minimaux_offres:
+  appel_offres_ouvert: 30
+  appel_offres_restreint_candidatures: 30
+  appel_offres_restreint_offres: 25
+  procedure_adaptee: null   # pas de minimum légal, "délai raisonnable" — comparaison à la strate uniquement
+
+# Durée maximale usuelle des accords-cadres (années) — [À VÉRIFIER]
+duree_max_accord_cadre:
+  pouvoirs_adjudicateurs: 4
+  entites_adjudicatrices: 8
