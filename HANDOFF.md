@@ -33,24 +33,36 @@ mémoire ne lève pas une garde de l'outil.
   utilisateurs, opérateur et tête de pont de la v1), 0006 (adossement dès la phase 1, artefact
   partagé), 0007 (moment du verrou des règles 4 à 7). Ordre voulu : fondations → critique → code ;
   `critique-specification` ne se lance qu'après les décisions sur ces ADR.
-- **En attente de l'auteur** : les ADR 0003 à 0007 ; les pilotes A (audit à la main), B (un rapport,
-  une personne), C (une fiche, un contributeur) et le test T1 (détectabilité par strate : une
-  journée agent **avec réseau**, scripts en annexe de la passe) ; `.claude/settings.json` (refus du
-  mode auto, auto-modification) ; le ménage des branches distantes fusionnées
-  (`chore/contexte-agentique`, `chore/critique-specification-impact`, `chore/hypotheses-structurantes`
-  : le proxy refuse la suppression à l'agent) ; la règle de « Fusion » ci-dessus (les PR #2 et #3
-  ont été fusionnées par l'agent sur demande explicite de l'auteur en conversation ; écrire si c'est
-  la règle).
+- **À faire par l'agent, dès qu'une session a le réseau** (le shell n'y a pas accès dans
+  l'environnement du 2026-11-09 : `curl -sS -m 10 -o /dev/null -w '%{http_code}'
+  https://www.data.gouv.fr/` répond `000`) :
+  - **pilote A, l'audit à la main** — décision de l'auteur du 2026-11-09, pour éprouver l'utilité
+    réelle du système avant d'écrire du code. Procédure, périmètre et contraintes : section
+    « Pilote A » de `docs/fondations/registre.md`. En deux mots : deux institutions de strates
+    différentes, les règles applicables à la main, chronométrage, résultats en agrégats sans nommer
+    personne, seuils relevés sur la source officielle mais **rapportés** et non écrits dans
+    `config/` ; la question « qu'en ferais-tu demain matin » revient à l'auteur ;
+  - **test T1, détectabilité par strate** — scripts en annexe de `docs/fondations/2026-11-09.md`.
+
+  Les deux informent l'ADR 0005 et n'attendent pas sa décision.
+- **En attente de l'auteur** : les ADR 0003 à 0007 ; le pilote B (un rapport remis à une personne qui
+  peut agir — un agent ne peut pas être le destinataire) et le pilote C (une fiche confiée à un
+  contributeur extérieur) ; `.claude/settings.json` (refus du mode auto, auto-modification) ; le
+  ménage des branches distantes fusionnées (`chore/contexte-agentique`,
+  `chore/critique-specification-impact`, `chore/hypotheses-structurantes` : le proxy refuse la
+  suppression à l'agent) ; la règle de « Fusion » ci-dessus (les PR #2 et #3 ont été fusionnées par
+  l'agent sur demande explicite de l'auteur en conversation ; écrire si c'est la règle).
 
 ## Prochaines tâches, par priorité
 
-1. L'auteur tranche les ADR 0004 à 0007 (la passe recommande) ; T1 et le pilote A peuvent précéder
-   la décision sur 0005.
-2. PR de révision de la spécification selon les ADR acceptés (`docs/01`, `docs/02` §2 et §9,
+1. **Pilote A et test T1**, dès qu'une session a le réseau : ce sont les deux mesures qui informent
+   l'ADR 0005, et elles ne coûtent rien à refaire si une décision les contredit.
+2. L'auteur tranche les ADR 0004 à 0007 (la passe recommande), au vu du pilote A et de T1 pour 0005.
+3. PR de révision de la spécification selon les ADR acceptés (`docs/01`, `docs/02` §2 et §9,
    `docs/08`, `docs/10` §2, en-tête du playbook, `config/strates.fr.yaml`), relue par l'auteur.
-3. `critique-specification` sur le nouvel étalon (première passe ; verdict « protocole 0.1 prêt à
+4. `critique-specification` sur le nouvel étalon (première passe ; verdict « protocole 0.1 prêt à
    être codé »).
-4. Puis les livrables de la phase 0 (`docs/08-roadmap.md`), dans l'ordre que donne `CLAUDE.md`
+5. Puis les livrables de la phase 0 (`docs/08-roadmap.md`), dans l'ordre que donne `CLAUDE.md`
    (« État actuel »), réordonnés si l'ADR 0005 est accepté (lot et delta remontent) :
 
    a. Dépôt, licence, CI, `pyproject.toml` (avec `C901` à 9, voir `complexite-maitrisee`), structure
