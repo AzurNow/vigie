@@ -109,6 +109,18 @@ exécutions.
 **Les scripts jetables vivent hors du dépôt.** (Banc) Génération et validation ponctuelles : dans le
 répertoire temporaire de la session, jamais dans le dépôt.
 
+**Ce qui doit être relu plus tard va dans le dépôt ; le répertoire temporaire ne survit pas à la
+session.** La première passe `hypotheses-structurantes` promettait que les faits relevés mais non
+vérifiés « pourront être vérifiés à la prochaine passe » depuis ses fichiers de travail — qui
+disparaissent avec la session. Corrigé avant fusion : ce qui compte est dans la passe (titres des
+sources), le reste n'existe plus et on le dit.
+
+**Vérifier le réseau du shell à l'étape 0 d'une passe qui doit calculer, et écrire d'avance ce
+qu'elle fera sans.** Le sous-agent « calculs » de la première passe du registre devait télécharger les
+DECP consolidées ; le réseau du shell était coupé et il a dû se rabattre sur des agrégats publiés et une
+estimation sous hypothèses. Le résultat est utilisable parce qu'il est étiqueté, mais la compétence ne
+l'avait pas prévu (`docs/DETTE.md`, 2026-11-09, point 2).
+
 **Ne pas écrire de contenu accentué multi-ligne par heredoc dans le shell de l'agent.** (Banc) Sur
 la machine de l'auteur, l'enveloppe shell de l'agent digérait mal un heredoc avec accents et
 guillemets (`unexpected EOF`). Utiliser l'outil d'écriture de fichier.
@@ -208,6 +220,14 @@ personne. Pour chaque compétence importée : chercher les mots de `docs/01` («
 « Utilisateurs cibles ») dans son texte ; s'ils n'y sont pas, c'est elle qu'il faut adapter.
 
 ### Sous-agents
+
+**Rouvrir chaque source qu'un sous-agent cite avant de s'en servir : la citation peut dire le
+contraire de la source.** Première passe `hypotheses-structurantes` : sur 55 faits du relevé du
+monde, 9 ne tenaient pas à la relecture par la session — dont « DoZorro n'utilise pas d'IA pour les
+red flags » alors que la page citée dit qu'il a été « le premier à tester l'apprentissage
+automatique », et des limites d'une base *traitée* présentées comme la qualité des données brutes.
+Non rouverts, ces faits auraient porté des statuts du registre. Les sources non rouvertes n'entrent
+pas au registre, même plausibles.
 
 **Un brief qui liste ses cas limites en liste fermée et ses questions déjà tranchées revient sans
 question.** (Banc) 28 cas limites numérotés, sept hésitations réglées d'avance : rapport sans question

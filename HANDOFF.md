@@ -18,33 +18,55 @@ mémoire ne lève pas une garde de l'outil.
 - **Phase 0 (fondations), rien n'est implémenté** : pas de `pyproject.toml`, pas de paquet `vigie/`,
   pas de CI. Le dépôt contient la spécification (`docs/`), la configuration de départ (`config/`), le
   connecteur `fr/decp` et la fiche d'exemple en YAML, le playbook `fr/audit-marches-publics-commune`.
-- **Contexte agentique importé du Banc d'essai 2027** (projet voisin du même auteur), adapté à Vigie,
-  fusionné dans `main` (PR #1) : six compétences (`cloture-de-session`, `complexite-maitrisee`,
-  `revue-de-code`, `conformite-specification`, `critique-specification`, `revue-contexte-agentique`),
-  deux agents (`codeur-opus`, `codeur-sonnet`), le gabarit de brief, ce fichier, `LESSONS.md`,
-  `docs/DETTE.md`, `.gitignore`, et dans `CLAUDE.md` la règle de complexité, la section « Où l'agent
-  s'arrête » et la clôture de session.
-- **PR ouverte, branche `chore/critique-specification-impact`** : `critique-specification` mesure
-  désormais la spécification à l'impact du projet (crédibilité **et** utilité : groupe de lentilles
-  E, lecture naïve, barreau « re-priorisation », déclencheur « maintenant » et passes périodiques).
-  À fusionner avant la première passe, qui est la prochaine action de l'auteur sur la spécification
-  nue, avant la première ligne de code.
-- **En attente de l'auteur** : `.claude/settings.json` (permissions de ménage des branches) n'a pas pu
-  être écrit par l'agent (refus du mode auto, auto-modification) ; l'ADR 0003 (point d'entrée pour les
-  autres agents) est proposé.
+- **Contexte agentique** (importé du Banc d'essai 2027, projet voisin du même auteur, PR #1 ; révisé
+  PR #2 et #3, fusionnées) : sept compétences — `cloture-de-session`, `complexite-maitrisee`,
+  `revue-de-code`, `conformite-specification`, `critique-specification` (mesure la spécification à
+  l'impact : crédibilité **et** utilité), `hypotheses-structurantes` (les paris de `docs/01`, de la
+  forme et des règles 4 à 7 traités comme hypothèses falsifiables ; règles 1 à 3 hors champ par
+  décision de l'auteur du 2026-11-09), `revue-contexte-agentique` — deux agents (`codeur-opus`,
+  `codeur-sonnet`), le gabarit de brief, ce fichier, `LESSONS.md`, `docs/DETTE.md`, `.gitignore`, et
+  dans `CLAUDE.md` la règle de complexité, « Où l'agent s'arrête » et la clôture de session.
+- **Première passe `hypotheses-structurantes` faite ; PR #4 ouverte, branche
+  `docs/fondations-2026-11-09`** : `docs/fondations/registre.md` (dix hypothèses, statuts et faits
+  sourcés), `docs/fondations/2026-11-09.md` (biais, écartés, trois pilotes, test T1, scripts), et
+  quatre ADR proposés : 0004 (mécanisme de dissuasion et mesure de résultat), 0005 (premiers
+  utilisateurs, opérateur et tête de pont de la v1), 0006 (adossement dès la phase 1, artefact
+  partagé), 0007 (moment du verrou des règles 4 à 7). Ordre voulu : fondations → critique → code ;
+  `critique-specification` ne se lance qu'après les décisions sur ces ADR.
+- **En attente de l'auteur** : les ADR 0003 à 0007 ; les pilotes A (audit à la main), B (un rapport,
+  une personne), C (une fiche, un contributeur) et le test T1 (détectabilité par strate : une
+  journée agent **avec réseau**, scripts en annexe de la passe) ; `.claude/settings.json` (refus du
+  mode auto, auto-modification) ; le ménage des branches distantes fusionnées
+  (`chore/contexte-agentique`, `chore/critique-specification-impact`, `chore/hypotheses-structurantes`
+  : le proxy refuse la suppression à l'agent) ; la règle de « Fusion » ci-dessus (les PR #2 et #3
+  ont été fusionnées par l'agent sur demande explicite de l'auteur en conversation ; écrire si c'est
+  la règle).
 
 ## Prochaines tâches, par priorité
 
-Livrables de la phase 0 (`docs/08-roadmap.md`), dans l'ordre que donne `CLAUDE.md` (« État actuel ») :
+1. L'auteur tranche les ADR 0004 à 0007 (la passe recommande) ; T1 et le pilote A peuvent précéder
+   la décision sur 0005.
+2. PR de révision de la spécification selon les ADR acceptés (`docs/01`, `docs/02` §2 et §9,
+   `docs/08`, `docs/10` §2, en-tête du playbook, `config/strates.fr.yaml`), relue par l'auteur.
+3. `critique-specification` sur le nouvel étalon (première passe ; verdict « protocole 0.1 prêt à
+   être codé »).
+4. Puis les livrables de la phase 0 (`docs/08-roadmap.md`), dans l'ordre que donne `CLAUDE.md`
+   (« État actuel »), réordonnés si l'ADR 0005 est accepté (lot et delta remontent) :
 
-1. Dépôt, licence, CI, `pyproject.toml` (avec `C901` à 9, voir `complexite-maitrisee`), structure de
-   `docs/07` §3.
-2. `vigie/protocol` : schémas pydantic Document, Evidence, Signal, Report ; `PROTOCOL_VERSION = "0.1"`.
-3. `vigie/store` : store adressé par contenu, provenance, index duckdb.
-4. Connecteur `fr/decp` (téléchargement, parsing vers OCDS, preuves déterministes, dédoublonnage G4).
-5. Règles A1, B1, C2, puis G2, G4, avec vrais positifs et faux positifs connus.
-6. La suite de la phase 0 : `fr/sirene`, `vigie/llm`, `vigie/lint`, runner de playbooks, rendu HTML,
-   `verify`.
+   a. Dépôt, licence, CI, `pyproject.toml` (avec `C901` à 9, voir `complexite-maitrisee`), structure
+      de `docs/07` §3.
+   b. `vigie/protocol` : schémas pydantic Document, Evidence, Signal, Report ; `PROTOCOL_VERSION =
+      "0.1"`.
+   c. `vigie/store` : store adressé par contenu, provenance, index duckdb.
+   d. Connecteur `fr/decp` (téléchargement, parsing vers OCDS, preuves déterministes, dédoublonnage
+      G4). À noter d'après la passe : le « nombre d'offres reçues » n'existe que pour les marchés
+      notifiés depuis le 1er janvier 2024 (arrêté du 22 décembre 2022) ; la consolidation
+      ministérielle est quasi vide pour 2024-2026 ; le consolidé communautaire (Parquet, ~262 Mo)
+      couvre 2018-2026.
+   e. Règles A1 (sur données 2024+ seulement), B1, C2, puis G2, G4, avec vrais positifs et faux
+      positifs connus.
+   f. La suite de la phase 0 : `fr/sirene`, `vigie/llm`, `vigie/lint`, runner de playbooks, rendu
+      HTML, `verify`.
 
 ## Quand il faut l'auteur
 
