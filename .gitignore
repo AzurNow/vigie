@@ -1,0 +1,3 @@
+# Claude Code : réglages propres à une machine, worktrees des sous-agents (copies complètes du dépôt)
+.claude/settings.local.json
+.claude/worktrees/
