@@ -44,7 +44,10 @@ consultation publique, `docs/10` §2 : la passe peut seulement signaler une tens
 
 - **Maintenant**, sur la spécification nue, avant la première ligne de code de la phase 0 : une
   faille trouvée là coûte une phrase ; la même, trouvée en fin de phase, coûte les schémas, le store
-  et les premières règles.
+  et les premières règles. Mais **après** la première passe de `hypotheses-structurantes`, et après
+  que l'auteur a tranché ses ADR : cette passe-ci mesure la spécification à l'étalon de `docs/01`,
+  l'autre demande si l'étalon est le bon, et polir un cadre avant de l'avoir mis en question, c'est
+  travailler pour rien. Même ordre à chaque nouveau domaine.
 - Puis **périodiquement, au fil de la vie du projet**, pour raffiner le protocole : avant de déclarer
   une phase de `docs/08` terminée, avant tout changement de `PROTOCOL_VERSION` ou de version du
   catalogue, après l'ajout d'une famille de règles ou d'un type de source (PV, liens d'intérêts),
