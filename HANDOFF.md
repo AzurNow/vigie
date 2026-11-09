@@ -13,17 +13,22 @@ fusionne. Ne jamais pousser directement sur `main`. Si un contrôle de l'outil r
 (fusion, permission), le dire sans le contourner : une autorisation donnée en conversation ou en
 mémoire ne lève pas une garde de l'outil.
 
-## État au 2026-11-08
+## État au 2026-11-09
 
 - **Phase 0 (fondations), rien n'est implémenté** : pas de `pyproject.toml`, pas de paquet `vigie/`,
   pas de CI. Le dépôt contient la spécification (`docs/`), la configuration de départ (`config/`), le
   connecteur `fr/decp` et la fiche d'exemple en YAML, le playbook `fr/audit-marches-publics-commune`.
 - **Contexte agentique importé du Banc d'essai 2027** (projet voisin du même auteur), adapté à Vigie,
-  sur la branche `chore/contexte-agentique`, non commité : six compétences (`cloture-de-session`,
-  `complexite-maitrisee`, `revue-de-code`, `conformite-specification`, `critique-specification`,
-  `revue-contexte-agentique`), deux agents (`codeur-opus`, `codeur-sonnet`), le gabarit de brief,
-  ce fichier, `LESSONS.md`, `docs/DETTE.md`, `.gitignore`, et dans `CLAUDE.md` la règle de complexité,
-  la section « Où l'agent s'arrête » et la clôture de session.
+  fusionné dans `main` (PR #1) : six compétences (`cloture-de-session`, `complexite-maitrisee`,
+  `revue-de-code`, `conformite-specification`, `critique-specification`, `revue-contexte-agentique`),
+  deux agents (`codeur-opus`, `codeur-sonnet`), le gabarit de brief, ce fichier, `LESSONS.md`,
+  `docs/DETTE.md`, `.gitignore`, et dans `CLAUDE.md` la règle de complexité, la section « Où l'agent
+  s'arrête » et la clôture de session.
+- **PR ouverte, branche `chore/critique-specification-impact`** : `critique-specification` mesure
+  désormais la spécification à l'impact du projet (crédibilité **et** utilité : groupe de lentilles
+  E, lecture naïve, barreau « re-priorisation », déclencheur « maintenant » et passes périodiques).
+  À fusionner avant la première passe, qui est la prochaine action de l'auteur sur la spécification
+  nue, avant la première ligne de code.
 - **En attente de l'auteur** : `.claude/settings.json` (permissions de ménage des branches) n'a pas pu
   être écrit par l'agent (refus du mode auto, auto-modification) ; l'ADR 0003 (point d'entrée pour les
   autres agents) est proposé.

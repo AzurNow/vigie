@@ -198,6 +198,15 @@ corriger pour qu'il garde.
 (Banc) Le parseur durci refusait aussi des entrées parfaitement légales. Ici : formats DECP, dates,
 montants.
 
+**Une compétence importée garde le but du projet d'où elle vient : relire son critère de survie des
+propositions contre les mesures de succès de ce projet.** `critique-specification`, importée du Banc
+(dont l'objet est la reproductibilité d'un audit), ne gardait une proposition que si elle changeait
+la justesse, la vérifiabilité, le risque juridique ou la réimplémentabilité ; aucun critère ne
+nommait le lecteur ni l'action attendue de lui, et son échelle de réponse n'avait pas de barreau
+« re-prioriser ». Une spécification pouvait en sortir avec le verdict « Oui » et ne servir à
+personne. Pour chaque compétence importée : chercher les mots de `docs/01` (« Mesures de succès »,
+« Utilisateurs cibles ») dans son texte ; s'ils n'y sont pas, c'est elle qu'il faut adapter.
+
 ### Sous-agents
 
 **Un brief qui liste ses cas limites en liste fermée et ses questions déjà tranchées revient sans
