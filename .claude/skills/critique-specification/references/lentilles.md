@@ -1,13 +1,14 @@
 # Lentilles de lecture
 
 Chaque lentille est le regard d'un spécialiste qui relirait la spécification pour une revue
-exigeante, ou d'un adversaire qui chercherait à faire tomber un rapport. Les questions sont des
-**pistes de lecture**, pas une liste à cocher : une question sans objet ne produit rien, et un
-problème qu'aucune question ne prévoit reste un constat. Chaque piste se termine par la même
-épreuve : **quel signal, quelle preuve ou quelle phrase de rapport en dépend, et qui peut
-l'exploiter ?**
+exigeante, d'un adversaire qui chercherait à faire tomber un rapport, ou d'un lecteur visé qui
+voudrait en faire quelque chose. Les questions sont des **pistes de lecture**, pas une liste à
+cocher : une question sans objet ne produit rien, et un problème qu'aucune question ne prévoit reste
+un constat. Chaque piste des groupes A à D se termine par la même épreuve : **quel signal, quelle
+preuve ou quelle phrase de rapport en dépend, et qui peut l'exploiter ?** Le groupe E a la sienne,
+donnée en tête.
 
-Les sous-agents de l'étape 3 reçoivent leur groupe (A, B, C ou D) en entier.
+Les sous-agents de l'étape 3 reçoivent leur groupe (A, B, C, D ou E) en entier.
 
 ---
 
@@ -124,7 +125,8 @@ meilleur sort, quand un agent généraliste exécute les playbooks, ou quand une
 - **Lecture par un non-spécialiste.** Le citoyen curieux est le premier utilisateur (`docs/01`) :
   « sévérité forte » ou un percentile élevé se lisent-ils comme une accusation, malgré le
   vocabulaire neutre ? Le texte fixe et les « explications ordinaires » suffisent-ils à l'en
-  empêcher ?
+  empêcher ? La lecture naïve de l'étape 3 en donne une mesure : ce que ce lecteur a compris et
+  ce qu'il dirait à un voisin.
 - **Comparaison et classement.** La synthèse comparative par strate pour les associations (`docs/02`
   §2.3, §4.3) peut-elle être retournée en classement d'institutions, que le projet exclut ?
 - **Campagnes électorales.** Pendant une campagne locale, un rapport produit par un camp contre une
@@ -199,14 +201,97 @@ juridiques. Elle ne cite un texte de loi ou une décision qu'après vérificatio
 
 ### D3. Faisabilité
 
+Cette lentille regarde du côté du mainteneur : ce que le projet peut tenir. Ce que le lecteur en
+obtient est la lentille E1.
+
 - **Une règle qu'on ne peut pas exécuter est pire qu'une règle absente** : elle sera tournée en
   silence. Chaque exigence est-elle tenable par un mainteneur seul, aux durées de `docs/08` ?
 - Les cibles de `docs/02` §9 et `docs/07` §15 (15 minutes, coût « d'un café », modèle local sur
   processeur) sont-elles compatibles avec le téléchargement et le traitement des données nationales
-  nécessaires aux strates ? **Calculer** ce qui peut l'être.
-- Le citoyen curieux installe-t-il réellement l'outil sans terminal avant la v1.1 (`docs/07` §13) ?
-  Sinon, qui sont les vrais premiers utilisateurs, et la spécification est-elle écrite pour eux ?
+  nécessaires aux strates ? **Calculer** ce qui peut l'être ; E1 dit ce qu'il en coûte au lecteur
+  quand elles ne le sont pas.
 - L'entretien du commons (fiches de communes à revérifier, `verifie_le` de moins de six mois,
   `docs/10` §5) est-il soutenable, et que fait l'outil d'une fiche périmée ?
 - Quelles règles ou exigences pourraient être **retirées** sans perte de justesse, pour libérer du
-  temps vers ce qui en a le plus besoin ?
+  temps vers ce qui en a le plus besoin ? (E2 pose la même question du côté de l'utilité.)
+
+---
+
+## Groupe E
+
+La question de ce groupe est celle du projet : **quel impact réel, pour quel travail ?** Les groupes
+A à D demandent si l'on croira un rapport ; celui-ci demande si quelqu'un en fera quelque chose, et
+si le projet dépense son temps là où l'impact est. Il se mesure à deux textes et à rien d'autre :
+les « Utilisateurs cibles » et les « Mesures de succès » de `docs/01`, et les parcours de `docs/02`
+§2. Une piste qui ne se rattache à aucun des deux n'est pas une piste. L'épreuve de ce groupe :
+**quel lecteur, quelle action concrète (question en conseil, demande CADA, article, saisine,
+auto-correction, contribution) et quelle mesure de succès changent, dans quel sens, et pour quel
+travail du projet ?** Ce groupe ne discute jamais une des sept règles ni la chaîne de preuve : là où
+l'utilité les heurte, il note une tension (règle 11 de la passe).
+
+### E1. Utilité pour le lecteur visé
+
+- **Le premier rapport de l'institution médiane.** Le citoyen curieux est le premier utilisateur
+  (`docs/01`) et audite *sa* commune, pas une commune choisie pour la diversité des strates. Que
+  contient le rapport de la commune médiane avec le playbook de phase 1 : combien de marchés dans
+  les DECP sur la période par défaut, combien de règles ont assez de données pour produire autre
+  chose qu'un signal de famille G ou un « non examiné » ? **Calculer**, par strate et sous hypothèses
+  explicites sur la couverture des DECP, la part des communes pour lesquelles le rapport porte au
+  moins un signal examinable. Si la réponse est « surtout G1 pour la plupart », la spécification le
+  dit-elle au lecteur avant qu'il installe l'outil, et la tête de pont (`docs/01`) est-elle la
+  bonne ?
+- **La chaîne du signal à l'action.** Pour chaque persona, suivre un signal jusqu'à l'action que
+  `docs/01` (engagement 4) attend : constat → « vérifier ensuite » → « suites possibles » →
+  question en conseil, demande CADA, article, saisine. Chaque maillon est-il outillé par la
+  spécification (modèle, destinataire générique, délai, forme requise), ou laissé au lecteur ? Le
+  rapport dit-il **quoi faire en premier** ? Combien de temps sépare l'installation de la première
+  action possible, et la spécification mesure-t-elle ce temps ?
+- **Les promesses faites au lecteur.** « Quinze minutes », « sans formation », « zéro jargon »,
+  « prix d'un café », « n'importe quelle commune française présente dans les DECP » (`docs/02` §2.1,
+  §9, §10) : chacune est-elle tenable par la spécification telle qu'écrite, pour l'institution
+  médiane et sur une machine ordinaire, et qu'arrive-t-il au lecteur quand elle ne l'est pas ? Une
+  promesse intenable est pire qu'une promesse absente : la première déception décide de la
+  dispersion.
+- **Le journaliste et l'association.** Ce qui leur manque pour agir *aujourd'hui* : exports, delta,
+  lot, preuves ouvrables, rapport Markdown reprenable (`docs/02` §2.2, §2.3). Quelle exigence de la
+  phase 1 leur sert vraiment, laquelle sert surtout le contributeur ? Sans terminal avant la v1.1
+  (`docs/07` §13), qui sont les vrais premiers utilisateurs, et la spécification est-elle écrite pour
+  eux ?
+- **L'institution qui s'auto-audite.** La dissuasion (`docs/01`) suppose qu'un acheteur se sache
+  observé. Vigie ne publie rien, et les rapports réels se discutent hors du projet (`docs/10` §3) :
+  par quel chemin un service achats apprend-il qu'un rapport ou que l'outil existe ? La
+  spécification compte-t-elle sur ce chemin sans l'écrire ?
+- **La boucle de calibration.** Les retours sont volontaires, anonymisés et passent par une pull
+  request (`docs/02` §4.5) : quel persona a le temps et l'envie de le faire, et combien de retours
+  faut-il pour recalibrer un seuil (**calculer**) ? Une boucle que personne n'alimente n'est pas une
+  boucle ; la spécification promet-elle une calibration qui n'arrivera pas ?
+- **Ce que la lecture naïve a montré.** La réponse du sous-agent de lecture naïve (étape 3) :
+  a-t-il compris « signal, pas conclusion » ; savait-il quoi faire ensuite ; qu'aurait-il dit à un
+  voisin ? Un écart entre ce qu'il a compris et ce que `docs/02` §4.1 veut faire comprendre est un
+  constat, avec sa phrase.
+
+### E2. Efficacité du projet
+
+- **Valeur par unité de travail.** Pour chaque livrable des phases 0 et 1 (`docs/08`), estimer sous
+  hypothèses écrites l'action supplémentaire qu'il rend possible pour un persona, et son coût (code,
+  tests, données, temps humain ; `docs/08` donne les durées). Un livrable coûteux qui ne change
+  l'action d'aucun persona avant la phase 3, ou une règle dont la donnée nécessaire est « souvent
+  absente » des DECP de l'aveu de sa fiche (`docs/03`, A1 et `nombre_offres_recues`, A2 et les dates
+  d'avis), est-il à sa place dans sa phase ? La réponse normale est une **re-priorisation**, pas un ajout.
+- **Le levier manquant.** Pour chaque mesure de succès de `docs/01`, quelle contrainte la limite le
+  plus — données disponibles, installation, lecture, action, visibilité, contributeurs ? La
+  spécification agit-elle sur cette contrainte, ou sur une autre, plus confortable ? Une mesure de
+  succès qu'aucune exigence de la spécification ne sert est un constat majeur.
+- **La dispersion.** Le modèle est OpenStreetMap (`docs/01`) : le projet ne vaut que si des tiers
+  ajoutent leur territoire. Qu'est-ce qui, dans la spécification, fait qu'une fiche de commune tient
+  en vingt lignes et qu'un contributeur vient, revient et maintient (`docs/02` §2.4, `docs/10` §3 et
+  §5) ? Qu'est-ce qui l'en empêche — validation, licence, CI, relecture par un second mainteneur qui
+  n'existe pas encore (`docs/09` §8) ?
+- **Le plus petit protocole qui atteint le premier rapport partagé.** Que faudrait-il retirer ou
+  différer, sans perte d'utilité pour le premier persona, pour qu'un rapport réel, vérifié et
+  partagé par son auteur (`docs/01`, « rapports partagés publiquement ») existe plus tôt ? Une
+  exigence qui retarde ce premier rapport doit le valoir, et le dire.
+- **Ce que la roadmap exclut.** « Ce qui n'est pas prévu » (`docs/08`) écarte un service, une API,
+  un score, une application mobile. Un de ces renoncements coûte-t-il une mesure de succès de façon
+  démontrable, et la raison écrite (`docs/01`, ADR 0001) a-t-elle pesé ce coût ? Un constat ici ne
+  rouvre pas l'ADR sans argument que ses options n'ont pas pesé (étape 4).
