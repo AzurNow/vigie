@@ -224,10 +224,12 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
   faible activité, et un rapport dont le seul signal est « rien n'est publié » offre une action mince
   ; sous 40 000 € HT l'absence est légale. Le statut tient pour les petites communes ; les chiffres
   exacts par strate restent à mesurer.
-- **Test ou pilote** : test agent (une journée, avec réseau) : exécuter `c1_detectabilite.py`,
+- **Test ou pilote** : test T1 (une journée, avec réseau) : exécuter `c1_detectabilite.py`,
   `c2_completude.py` et `c3_volumes.py` (annexe de la passe) sur le Parquet consolidé, Sirene et les
   populations INSEE ; falsifié si la part des communes de 500 à 3 500 habitants avec ≥ 10 marchés sur
-  36 mois dépasse la moitié. Pilote A (audit à la main).
+  36 mois dépasse la moitié. Et pilote A (audit à la main), exécuté par l'agent dès qu'une session a
+  le réseau (voir « Pilote A » en fin de registre) : T1 donne la distribution, le pilote A donne ce
+  qui sort réellement pour une institution.
 - **Alternative** (recommandée) : tête de pont de la phase 1 = **communes de 3 500 habitants et
   plus, EPCI et départements**, en lot, avec le playbook qui déclare dès l'en-tête ce qu'il ne peut
   pas dire pour une petite commune. Sert : « nombre d'institutions ayant fait l'objet d'au moins un
@@ -543,7 +545,37 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
 
 | Pilote | Hypothèses testées | Exécutant | Coût | Décrit dans |
 | --- | --- | --- | --- | --- |
-| A — L'audit à la main | H2, H3, H10, promesse « quinze minutes » | auteur | 3 à 5 h | [2026-11-09](2026-11-09.md) |
-| B — Un rapport, une personne | H1, H5, H6, H7, engagement 4 | auteur | 2 h + 4 semaines d'attente | [2026-11-09](2026-11-09.md) |
+| A — L'audit à la main | H2, H3, H10, promesse « quinze minutes » | **agent, avec réseau** (décision de l'auteur, 2026-11-09) ; la question finale reste à l'auteur | 3 à 5 h | [2026-11-09](2026-11-09.md) et « Pilote A » ci-dessous |
+| B — Un rapport, une personne | H1, H5, H6, H7, engagement 4 | auteur (un agent ne peut pas être le destinataire) | 2 h + 4 semaines d'attente | [2026-11-09](2026-11-09.md) |
 | C — Une fiche, un contributeur | H4, « 20 lignes de YAML » | auteur + une personne extérieure | 1 h + 1 à 2 h | [2026-11-09](2026-11-09.md) |
 | T1 — Détectabilité par strate (test agent) | H3 | agent, avec réseau | 1 jour | [2026-11-09](2026-11-09.md), annexe |
+
+### Pilote A — exécution par l'agent (ajouté le 2026-11-09, après la passe)
+
+L'auteur a décidé que le pilote A serait exécuté par l'agent dans une session **ayant le réseau**,
+pour éprouver l'utilité réelle du système avant d'écrire du code. Ce que cela change et ce que cela
+ne change pas :
+
+- **Ce que l'agent fait** : les étapes 1 à 5 de la procédure (récupérer les marchés d'une
+  institution sur 36 mois, mesurer la complétude des champs, appliquer à la main les règles qui ne
+  demandent pas de statistiques nationales — A1 sur 2024+, A3 au contrat, B1, B2, C2, C3, D1, E1,
+  G2, G4 —, rédiger chaque constat au format de `docs/02` §4 et le relire contre le vocabulaire
+  interdit de `docs/02` §4.2), sur **au moins deux institutions de strates différentes** dont une de
+  moins de 2 000 habitants et une de 3 500 et plus. Chronométrer chaque étape.
+- **Ce qui reste à l'auteur** : l'étape 6 — ce qu'il ferait de ce résultat le lendemain matin — et
+  le pilote B, puisque le projet ne publie rien et que la livraison exige un humain (`docs/02` §5).
+- **Préalable** : relever les seuils réellement en vigueur à la date de chaque marché sur la source
+  officielle (page de la direction des affaires juridiques), faute de quoi B1 n'est pas calculable.
+  L'agent **rapporte** ces valeurs et leurs URL ; il n'écrit pas dans `config/seuils.fr.yaml` et ne
+  lève aucun **[À VÉRIFIER]** de lui-même (`CLAUDE.md`, « Où l'agent s'arrête »).
+- **Contraintes** : aucune institution nommée dans ce qui remonte au dépôt (`docs/10` §3) — les
+  résultats sont des agrégats et des strates ; aucune donnée de personne physique au-delà de
+  `docs/09` §2, en particulier si un attributaire est un entrepreneur individuel ; les données
+  téléchargées et les scripts restent hors du dépôt (`LESSONS.md`, « Outillage »).
+- **Ce que le pilote décide** : si rien d'examinable ne sort pour l'institution de moins de 2 000
+  habitants et qu'il en sort pour celle de 3 500 et plus, H3 et l'alternative de l'ADR 0005 sont
+  confirmées ; si l'inverse, l'alternative tombe et le registre est réécrit. Le pilote **n'attend
+  pas** les décisions sur les ADR 0004 à 0007 : c'est une mesure qui les informe.
+- **Ce qui revient au registre** : nombre de marchés, part des champs renseignés, règles applicables
+  et inapplicables avec la raison, signaux par règle, temps par étape, et les phrases de constat qui
+  ont heurté le vocabulaire interdit. Statut de H3 mis à jour en conséquence.
