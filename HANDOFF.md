@@ -31,7 +31,7 @@ mémoire ne lève pas une garde de l'outil.
   marche-public.fr et **rapportés**, pas écrits dans `config/` : le site de la DAJ refuse les accès
   automatisés (403), et le mode auto refuse à juste titre de le contourner.
 - **PR #4 à #7 fusionnées le 2026-11-13** par l'agent, à la demande explicite de l'auteur (bases de
-  #6 et #7 rebasculées sur `main` avant fusion). **PR #8 ouverte** (`fix/lessons-anonymat`) : retire de
+  #6 et #7 rebasculées sur `main` avant fusion). **PR #8 fusionnée** (`fix/lessons-anonymat`) : retire de
   `LESSONS.md` un montant qui rendait identifiable une commune du pilote A ; le montant reste dans
   l'historique de `main` (commit `79d5b5d`), la réécriture de `main` revient à l'auteur.
 - **Données de travail** (consolidé DECP du 2026-11-13, tables d'identifiants, scripts) : dans le
@@ -45,7 +45,8 @@ mémoire ne lève pas une garde de l'outil.
 
 ## Prochaines tâches, par priorité
 
-1. L'auteur fusionne #8, puis tranche les ADR 0004 à 0008, au vu de T1 et du pilote A pour 0005.
+1. L'auteur tranche les ADR 0004 à 0008, au vu de T1 et du pilote A pour 0005. Recommandation de
+   l'agent sur l'historique de `main` : le laisser tel quel (le montant n'est plus dans aucun fichier).
 2. Petite PR de la session suivante : étape 0 des compétences `critique-specification` et
    `hypotheses-structurantes` (vérification du réseau, conduite sans) — `docs/DETTE.md`, 2026-11-09,
    point 2.
