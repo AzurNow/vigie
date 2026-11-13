@@ -23,7 +23,7 @@ une PR dont la base est la branche d'une autre PR ») décrit déjà ce piège.
 vérifier que la base de #6 affiche `main`, fusionner, puis de même pour #7. Ou, au choix de l'auteur,
 fermer #6 et faire de #7 une seule PR sur `main` depuis le sommet.
 
-### 2. Les deux premiers commits de la PR #7 rendent identifiables les deux communes du pilote A — *haute*
+### ~~2. Les deux premiers commits de la PR #7 rendent identifiables les deux communes du pilote A~~ — réglé le 2026-11-13 par la réécriture de la branche en un seul commit propre (poussée en force sur décision de l'auteur) ; les anciens commits ne restent visibles que par le lien « force-pushed » de la PR, hors de `main`
 
 Le compte rendu du pilote citait des montants exacts au centime, les populations exactes, le nom d'un
 profil d'acheteur départemental et la graine du tirage. Un seul de ces éléments suffit à retrouver la

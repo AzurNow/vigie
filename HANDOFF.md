@@ -32,15 +32,16 @@ mémoire ne lève pas une garde de l'outil.
   automatisés (403), et le mode auto refuse à juste titre de le contourner.
 - **PR ouvertes, toutes de documentation, empilées** : #4 (`docs/fondations-2026-11-09`, base
   `main`) ← #6 (`docs/t1-detectabilite`, base #4) ← #7 (`docs/pilote-a`, base #6) ; #5
-  (`chore/cloture-2026-11-09`, base `main`, cette clôture). Voir `docs/DETTE.md`, 2026-11-13, point 1
+  (`chore/cloture-2026-11-09`, base `main`, cette clôture). La branche de #7 a été réécrite en
+  un seul commit et poussée en force le 2026-11-13, à la demande de l'auteur, pour retirer des
+  détails qui rendaient les communes du pilote identifiables. Voir `docs/DETTE.md`, 2026-11-13, point 1
   avant de fusionner.
 - **Données de travail** (consolidé DECP du 2026-11-13, tables d'identifiants, scripts) : dans le
   répertoire temporaire de la session, hors du dépôt ; les scripts utiles sont recopiés en annexe des
   comptes rendus, les empreintes des entrées aussi.
 - **En attente de l'auteur** : les ADR 0003 à 0008 ; l'étape 6 du pilote A (« qu'en ferais-tu demain
   matin ») ; le pilote B (peut partir de la commune B du pilote A ; les identités des
-  deux communes sont remises à l'auteur hors du dépôt, jamais écrites ici) et le pilote C ; la
-  réécriture de l'historique de la PR #7 (`docs/DETTE.md`, 2026-11-13, point 2) ; `.claude/settings.json` ; le ménage des branches distantes
+  deux communes sont remises à l'auteur hors du dépôt, jamais écrites ici) et le pilote C ; ; `.claude/settings.json` ; le ménage des branches distantes
   fusionnées (`chore/contexte-agentique`, `chore/critique-specification-impact`,
   `chore/hypotheses-structurantes`) ; la règle de « Fusion » ci-dessus.
 
