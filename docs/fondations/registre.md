@@ -242,9 +242,10 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
   (2026-11-13).
 - **Test ou pilote** : test T1 **exécuté le 2026-11-13** ([compte rendu](2026-11-13-t1.md)) : le
   critère de falsification de l'alternative (plus de la moitié des communes de 500 à 3 500 habitants
-  avec ≥ 10 marchés sur 36 mois) n'est pas atteint — 8 à 11 %. Reste le pilote A (audit à la main), exécuté par l'agent dès qu'une session a
-  le réseau (voir « Pilote A » en fin de registre) : T1 donne la distribution, le pilote A donne ce
-  qui sort réellement pour une institution.
+  avec ≥ 10 marchés sur 36 mois) n'est pas atteint — 8 à 11 %. Pilote A **exécuté le même jour**
+  ([compte rendu](2026-11-13-pilote-a.md)) : il sort un signal examinable des deux communes, mais la
+  petite venait du vivier favorable (les 14 % de sa strate qui publient au moins 5 marchés). Lecture
+  proposée : ce qui compte est le volume publié plutôt que la population ; statut inchangé.
 - **Alternative** (recommandée) : tête de pont de la phase 1 = **communes de 3 500 habitants et
   plus, EPCI et départements**, en lot, avec le playbook qui déclare dès l'en-tête ce qu'il ne peut
   pas dire pour une petite commune. Sert : « nombre d'institutions ayant fait l'objet d'au moins un
@@ -544,6 +545,10 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
     « interprétation et extraction ». — https://arxiv.org/pdf/2509.25498, consulté le 2026-11-09.
   - [2] Rédactions : « toute information ou citation issue des résumés par IA devait être
     entièrement vérifiée » ; « c'est un tuyau ». — Nieman Lab, cité en H7.
+  - [1, mesuré] Pilote A, deux communes : tous les signaux examinables sortent de règles simples (A1
+    par marché surtout) ; les règles agrégées ne se déclenchent pas à cette échelle ; 6 déclenchements
+    sur 17 sont des faux positifs que les fiches ne prévoient pas (lots d'une même consultation,
+    procédure plus exigeante que requis). — [2026-11-13](2026-11-13-pilote-a.md), ADR 0008 proposé.
 - **Argument contraire** : rien à opposer sur le périmètre : les trois usages de la règle 4
   (extraire avec preuve, aider la résolution, rédiger ancré) sont exactement ceux que la littérature
   juge tenables sous contrôle humain, et l'erreur la plus dangereuse — une valeur inventée là où le
@@ -563,7 +568,7 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
 
 | Pilote | Hypothèses testées | Exécutant | Coût | Décrit dans |
 | --- | --- | --- | --- | --- |
-| A — L'audit à la main | H2, H3, H10, promesse « quinze minutes » | **agent, avec réseau** (décision de l'auteur, 2026-11-09) ; la question finale reste à l'auteur | 3 à 5 h | [2026-11-09](2026-11-09.md) et « Pilote A » ci-dessous |
+| A — L'audit à la main | H2, H3, H10, promesse « quinze minutes » | **agent, avec réseau** (décision de l'auteur, 2026-11-09) — **exécuté le 2026-11-13**, sauf l'étape 6, qui reste à l'auteur | environ 30 min d'agent (non représentatif d'un humain) | [2026-11-09](2026-11-09.md) ; résultat : [2026-11-13](2026-11-13-pilote-a.md) |
 | B — Un rapport, une personne | H1, H5, H6, H7, engagement 4 | auteur (un agent ne peut pas être le destinataire) | 2 h + 4 semaines d'attente | [2026-11-09](2026-11-09.md) |
 | C — Une fiche, un contributeur | H4, « 20 lignes de YAML » | auteur + une personne extérieure | 1 h + 1 à 2 h | [2026-11-09](2026-11-09.md) |
 | T1 — Détectabilité par strate (test agent) | H3 | agent, avec réseau — **exécuté le 2026-11-13** | 1 heure | [2026-11-09](2026-11-09.md) ; résultat : [2026-11-13](2026-11-13-t1.md) |
@@ -586,8 +591,10 @@ ne change pas :
   officielle (page de la direction des affaires juridiques), faute de quoi B1 n'est pas calculable.
   L'agent **rapporte** ces valeurs et leurs URL ; il n'écrit pas dans `config/seuils.fr.yaml` et ne
   lève aucun **[À VÉRIFIER]** de lui-même (`CLAUDE.md`, « Où l'agent s'arrête »).
-- **Contraintes** : aucune institution nommée dans ce qui remonte au dépôt (`docs/10` §3) — les
-  résultats sont des agrégats et des strates ; aucune donnée de personne physique au-delà de
+- **Contraintes** : aucune institution nommée **ni identifiable** dans ce qui remonte au dépôt
+  (`docs/10` §3) — les résultats sont des agrégats et des strates ; montants en tranches, dates à
+  l'année, populations en strates, ni graine de tirage ni source qui localise (ajouté le 2026-11-13,
+  après qu'un premier état du compte rendu permettait de retrouver les communes) ; aucune donnée de personne physique au-delà de
   `docs/09` §2, en particulier si un attributaire est un entrepreneur individuel ; les données
   téléchargées et les scripts restent hors du dépôt (`LESSONS.md`, « Outillage »).
 - **Ce que le pilote décide** : si rien d'examinable ne sort pour l'institution de moins de 2 000
