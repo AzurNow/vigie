@@ -9,7 +9,7 @@ des ADR « proposés » dans `docs/decisions/`.
 
 ## 2026-11-13 — Test T1 et pilote A exécutés par l'agent, ADR 0008 proposé (`docs/fondations/`, `docs/decisions/0008`)
 
-### 1. Les PR #6 et #7 ont pour base la branche d'une autre PR — *moyenne*
+### ~~1. Les PR #6 et #7 ont pour base la branche d'une autre PR~~ — réglé le 2026-11-13 : bases rebasculées sur `main` avant chaque fusion, #4 à #7 fusionnées dans `main`
 
 #6 a pour base `docs/fondations-2026-11-09` (#4) et #7 a pour base `docs/t1-detectabilite` (#6),
 parce que chaque travail s'appuyait sur le registre de la précédente. `LESSONS.md` (« Ne pas fusionner

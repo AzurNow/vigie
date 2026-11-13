@@ -30,12 +30,10 @@ mémoire ne lève pas une garde de l'outil.
   proposé (fiches B1, B2, plancher des règles à percentile, seuils 2026). Seuils relevés sur
   marche-public.fr et **rapportés**, pas écrits dans `config/` : le site de la DAJ refuse les accès
   automatisés (403), et le mode auto refuse à juste titre de le contourner.
-- **PR ouvertes, toutes de documentation, empilées** : #4 (`docs/fondations-2026-11-09`, base
-  `main`) ← #6 (`docs/t1-detectabilite`, base #4) ← #7 (`docs/pilote-a`, base #6) ; #5
-  (`chore/cloture-2026-11-09`, base `main`, cette clôture). La branche de #7 a été réécrite en
-  un seul commit et poussée en force le 2026-11-13, à la demande de l'auteur, pour retirer des
-  détails qui rendaient les communes du pilote identifiables. Voir `docs/DETTE.md`, 2026-11-13, point 1
-  avant de fusionner.
+- **PR #4 à #7 fusionnées le 2026-11-13** par l'agent, à la demande explicite de l'auteur (bases de
+  #6 et #7 rebasculées sur `main` avant fusion). **PR #8 ouverte** (`fix/lessons-anonymat`) : retire de
+  `LESSONS.md` un montant qui rendait identifiable une commune du pilote A ; le montant reste dans
+  l'historique de `main` (commit `79d5b5d`), la réécriture de `main` revient à l'auteur.
 - **Données de travail** (consolidé DECP du 2026-11-13, tables d'identifiants, scripts) : dans le
   répertoire temporaire de la session, hors du dépôt ; les scripts utiles sont recopiés en annexe des
   comptes rendus, les empreintes des entrées aussi.
@@ -47,8 +45,7 @@ mémoire ne lève pas une garde de l'outil.
 
 ## Prochaines tâches, par priorité
 
-1. L'auteur fusionne #4, #6, #7 et #5 dans l'ordre et selon la procédure de `docs/DETTE.md`
-   (2026-11-13, point 1), puis tranche les ADR 0004 à 0008, au vu de T1 et du pilote A pour 0005.
+1. L'auteur fusionne #8, puis tranche les ADR 0004 à 0008, au vu de T1 et du pilote A pour 0005.
 2. Petite PR de la session suivante : étape 0 des compétences `critique-specification` et
    `hypotheses-structurantes` (vérification du réseau, conduite sans) — `docs/DETTE.md`, 2026-11-09,
    point 2.
