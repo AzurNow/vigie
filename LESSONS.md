@@ -159,7 +159,7 @@ populations en strates, aucune graine ni source qui localise.
 
 **Vérifier une agrégation en recomptant à la main un groupe qu'on connaît.** La règle B2 du pilote A
 groupait la fenêtre glissante sans l'identifiant du marché d'ancrage : trois lots notifiés le même
-jour comptaient chacun trois fois (599 194 € au lieu de 199 731 €). L'écart s'est vu parce que la
+jour comptaient chacun trois fois, ce qui triplait la somme. L'écart s'est vu parce que la
 somme des trois lots était connue ; sans ce recomptage, B2 aurait affiché des sommes triplées.
 
 **Lire `state = MERGED` avant toute suppression de branche, et ne rien chaîner derrière une fusion
