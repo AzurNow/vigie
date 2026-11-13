@@ -13,70 +13,64 @@ fusionne. Ne jamais pousser directement sur `main`. Si un contrôle de l'outil r
 (fusion, permission), le dire sans le contourner : une autorisation donnée en conversation ou en
 mémoire ne lève pas une garde de l'outil.
 
-## État au 2026-11-09
+## État au 2026-11-13
 
 - **Phase 0 (fondations), rien n'est implémenté** : pas de `pyproject.toml`, pas de paquet `vigie/`,
-  pas de CI. Le dépôt contient la spécification (`docs/`), la configuration de départ (`config/`), le
-  connecteur `fr/decp` et la fiche d'exemple en YAML, le playbook `fr/audit-marches-publics-commune`.
-- **Contexte agentique** (importé du Banc d'essai 2027, projet voisin du même auteur, PR #1 ; révisé
-  PR #2 et #3, fusionnées) : sept compétences — `cloture-de-session`, `complexite-maitrisee`,
-  `revue-de-code`, `conformite-specification`, `critique-specification` (mesure la spécification à
-  l'impact : crédibilité **et** utilité), `hypotheses-structurantes` (les paris de `docs/01`, de la
-  forme et des règles 4 à 7 traités comme hypothèses falsifiables ; règles 1 à 3 hors champ par
-  décision de l'auteur du 2026-11-09), `revue-contexte-agentique` — deux agents (`codeur-opus`,
-  `codeur-sonnet`), le gabarit de brief, ce fichier, `LESSONS.md`, `docs/DETTE.md`, `.gitignore`, et
-  dans `CLAUDE.md` la règle de complexité, « Où l'agent s'arrête » et la clôture de session.
-- **Première passe `hypotheses-structurantes` faite ; PR #4 ouverte, branche
-  `docs/fondations-2026-11-09`** : `docs/fondations/registre.md` (dix hypothèses, statuts et faits
-  sourcés), `docs/fondations/2026-11-09.md` (biais, écartés, trois pilotes, test T1, scripts), et
-  quatre ADR proposés : 0004 (mécanisme de dissuasion et mesure de résultat), 0005 (premiers
-  utilisateurs, opérateur et tête de pont de la v1), 0006 (adossement dès la phase 1, artefact
-  partagé), 0007 (moment du verrou des règles 4 à 7). Ordre voulu : fondations → critique → code ;
-  `critique-specification` ne se lance qu'après les décisions sur ces ADR.
-- **À faire par l'agent, dès qu'une session a le réseau** (le shell n'y a pas accès dans
-  l'environnement du 2026-11-09 : `curl -sS -m 10 -o /dev/null -w '%{http_code}'
-  https://www.data.gouv.fr/` répond `000`) :
-  - **pilote A, l'audit à la main** — décision de l'auteur du 2026-11-09, pour éprouver l'utilité
-    réelle du système avant d'écrire du code. Procédure, périmètre et contraintes : section
-    « Pilote A » de `docs/fondations/registre.md`. En deux mots : deux institutions de strates
-    différentes, les règles applicables à la main, chronométrage, résultats en agrégats sans nommer
-    personne, seuils relevés sur la source officielle mais **rapportés** et non écrits dans
-    `config/` ; la question « qu'en ferais-tu demain matin » revient à l'auteur ;
-  - **test T1, détectabilité par strate** — scripts en annexe de `docs/fondations/2026-11-09.md`.
-
-  Les deux informent l'ADR 0005 et n'attendent pas sa décision.
-- **En attente de l'auteur** : les ADR 0003 à 0007 ; le pilote B (un rapport remis à une personne qui
-  peut agir — un agent ne peut pas être le destinataire) et le pilote C (une fiche confiée à un
-  contributeur extérieur) ; `.claude/settings.json` (refus du mode auto, auto-modification) ; le
-  ménage des branches distantes fusionnées (`chore/contexte-agentique`,
-  `chore/critique-specification-impact`, `chore/hypotheses-structurantes` : le proxy refuse la
-  suppression à l'agent) ; la règle de « Fusion » ci-dessus (les PR #2 et #3 ont été fusionnées par
-  l'agent sur demande explicite de l'auteur en conversation ; écrire si c'est la règle).
+  pas de CI. Ordre voulu inchangé : fondations → critique → code.
+- **Contexte agentique** en place (PR #1 à #3 fusionnées) : sept compétences, deux agents, gabarit
+  de brief, `LESSONS.md`, `docs/DETTE.md`.
+- **Test T1 exécuté le 2026-11-13** (PR #6) : `docs/fondations/2026-11-13-t1.md`, H3 mesurée par
+  strate. 8 à 11 % des communes de 500 à 3 500 habitants ont au moins 10 marchés en 36 mois ; la moitié
+  des communes y arrive vers 4 000 à 5 500 habitants ; EPCI 79 %, départements 95 %. Le nombre
+  d'offres est renseigné pour 84 à 87 % des marchés de 2024-2025 ; le consolidé communautaire n'a pas
+  de rupture en 2024 (flux comptable de la DGFiP, ~68 % des marchés des petites communes).
+- **Pilote A exécuté par l'agent le 2026-11-13** (PR #7) : `docs/fondations/2026-11-13-pilote-a.md`.
+  Deux communes tirées au sort (vivier favorable pour la petite) ; un signal examinable sort des deux ;
+  6 déclenchements sur 17 sont des faux positifs que les fiches B1 et B2 ne prévoient pas ; ADR 0008
+  proposé (fiches B1, B2, plancher des règles à percentile, seuils 2026). Seuils relevés sur
+  marche-public.fr et **rapportés**, pas écrits dans `config/` : le site de la DAJ refuse les accès
+  automatisés (403), et le mode auto refuse à juste titre de le contourner.
+- **PR ouvertes, toutes de documentation, empilées** : #4 (`docs/fondations-2026-11-09`, base
+  `main`) ← #6 (`docs/t1-detectabilite`, base #4) ← #7 (`docs/pilote-a`, base #6) ; #5
+  (`chore/cloture-2026-11-09`, base `main`, cette clôture). Voir `docs/DETTE.md`, 2026-11-13, point 1
+  avant de fusionner.
+- **Données de travail** (consolidé DECP du 2026-11-13, tables d'identifiants, scripts) : dans le
+  répertoire temporaire de la session, hors du dépôt ; les scripts utiles sont recopiés en annexe des
+  comptes rendus, les empreintes des entrées aussi.
+- **En attente de l'auteur** : les ADR 0003 à 0008 ; l'étape 6 du pilote A (« qu'en ferais-tu demain
+  matin ») ; le pilote B (peut partir de la commune B du pilote A ; les identités des
+  deux communes sont remises à l'auteur hors du dépôt, jamais écrites ici) et le pilote C ; la
+  réécriture de l'historique de la PR #7 (`docs/DETTE.md`, 2026-11-13, point 2) ; `.claude/settings.json` ; le ménage des branches distantes
+  fusionnées (`chore/contexte-agentique`, `chore/critique-specification-impact`,
+  `chore/hypotheses-structurantes`) ; la règle de « Fusion » ci-dessus.
 
 ## Prochaines tâches, par priorité
 
-1. **Pilote A et test T1**, dès qu'une session a le réseau : ce sont les deux mesures qui informent
-   l'ADR 0005, et elles ne coûtent rien à refaire si une décision les contredit.
-2. L'auteur tranche les ADR 0004 à 0007 (la passe recommande), au vu du pilote A et de T1 pour 0005.
+1. L'auteur fusionne #4, #6, #7 et #5 dans l'ordre et selon la procédure de `docs/DETTE.md`
+   (2026-11-13, point 1), puis tranche les ADR 0004 à 0008, au vu de T1 et du pilote A pour 0005.
+2. Petite PR de la session suivante : étape 0 des compétences `critique-specification` et
+   `hypotheses-structurantes` (vérification du réseau, conduite sans) — `docs/DETTE.md`, 2026-11-09,
+   point 2.
 3. PR de révision de la spécification selon les ADR acceptés (`docs/01`, `docs/02` §2 et §9,
-   `docs/08`, `docs/10` §2, en-tête du playbook, `config/strates.fr.yaml`), relue par l'auteur.
+   `docs/03` B1/B2, `docs/08`, `docs/10` §2, `docs/11`, en-tête du playbook, `config/`), relue par
+   l'auteur ; les seuils seulement après vérification par l'auteur sur la source officielle.
 4. `critique-specification` sur le nouvel étalon (première passe ; verdict « protocole 0.1 prêt à
    être codé »).
 5. Puis les livrables de la phase 0 (`docs/08-roadmap.md`), dans l'ordre que donne `CLAUDE.md`
-   (« État actuel »), réordonnés si l'ADR 0005 est accepté (lot et delta remontent) :
+   (« État actuel »), réordonnés si l'ADR 0005 est accepté :
 
    a. Dépôt, licence, CI, `pyproject.toml` (avec `C901` à 9, voir `complexite-maitrisee`), structure
       de `docs/07` §3.
    b. `vigie/protocol` : schémas pydantic Document, Evidence, Signal, Report ; `PROTOCOL_VERSION =
       "0.1"`.
    c. `vigie/store` : store adressé par contenu, provenance, index duckdb.
-   d. Connecteur `fr/decp` (téléchargement, parsing vers OCDS, preuves déterministes, dédoublonnage
-      G4). À noter d'après la passe : le « nombre d'offres reçues » n'existe que pour les marchés
-      notifiés depuis le 1er janvier 2024 (arrêté du 22 décembre 2022) ; la consolidation
-      ministérielle est quasi vide pour 2024-2026 ; le consolidé communautaire (Parquet, ~262 Mo)
-      couvre 2018-2026.
+   d. Connecteur `fr/decp`, d'après T1 et le pilote A : un marché = un `uid` ; date de notification
+      prise sur la ligne `modification_id = 0` (les lignes de modification du flux comptable portent
+      la date de la modification) ; ~11 % de doublons inter-sources (même SIREN, date, montant,
+      titulaire) ; identifiants d'attributaire invalides (G4) ; la colonne `type` donne travaux /
+      services / fournitures ; retard de publication sur les 4 derniers mois.
    e. Règles A1 (sur données 2024+ seulement), B1, C2, puis G2, G4, avec vrais positifs et faux
-      positifs connus.
+      positifs connus — dont « lots d'une même consultation » pour B1 et B2.
    f. La suite de la phase 0 : `fr/sirene`, `vigie/llm`, `vigie/lint`, runner de playbooks, rendu
       HTML, `verify`.
 

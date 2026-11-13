@@ -7,9 +7,60 @@ des ADR « proposés » dans `docs/decisions/`.
 
 ---
 
+## 2026-11-13 — Test T1 et pilote A exécutés par l'agent, ADR 0008 proposé (`docs/fondations/`, `docs/decisions/0008`)
+
+### 1. Les PR #6 et #7 ont pour base la branche d'une autre PR — *moyenne*
+
+#6 a pour base `docs/fondations-2026-11-09` (#4) et #7 a pour base `docs/t1-detectabilite` (#6),
+parce que chaque travail s'appuyait sur le registre de la précédente. `LESSONS.md` (« Ne pas fusionner
+une PR dont la base est la branche d'une autre PR ») décrit déjà ce piège.
+
+**Pourquoi ça casse.** Si #6 est fusionnée avant #4, elle atterrit dans la branche de #4 et pas dans
+`main` ; si #4 est fusionnée sans supprimer sa branche, GitHub ne rebase pas #6 sur `main`. On le voit
+à la lecture de `main`, après coup.
+
+**Ce qu'il faut faire.** Fusionner #4, supprimer sa branche (GitHub rebase alors #6 sur `main`),
+vérifier que la base de #6 affiche `main`, fusionner, puis de même pour #7. Ou, au choix de l'auteur,
+fermer #6 et faire de #7 une seule PR sur `main` depuis le sommet.
+
+### 2. Les deux premiers commits de la PR #7 rendent identifiables les deux communes du pilote A — *haute*
+
+Le compte rendu du pilote citait des montants exacts au centime, les populations exactes, le nom d'un
+profil d'acheteur départemental et la graine du tirage. Un seul de ces éléments suffit à retrouver la
+commune dans le consolidé public. Le troisième commit les retire du fichier, et le corps de la PR a été
+réécrit, mais le dépôt est public et l'historique de la branche les garde.
+
+**Pourquoi ça casse.** Une fois la PR fusionnée, n'importe qui peut lire dans l'historique du projet
+des signaux attachés à une commune réelle et identifiable ; c'est ce que `docs/10` §3 exclut (« on ne
+discute pas d'institutions nommées dans les espaces du projet »). Aucun contrôle ne le voit : ni
+`lint`, qui ne lit pas `docs/fondations/`, ni la relecture, qui lit le diff final.
+
+**Ce qu'il faut faire.** Décision de l'auteur, sur une action difficile à défaire : réécrire la
+branche en un seul commit propre et la pousser en force avant fusion (recommandé), ou fermer #7 et
+ouvrir une PR neuve depuis une branche propre ; dans les deux cas, les anciens commits restent
+visibles un temps par le lien de la PR. Ensuite, inscrire la contrainte dans la procédure du pilote
+du registre (« montants en tranches, dates à l'année, aucune graine »).
+
+### 3. Le seuil de dispense travaux de 100 000 € est relevé sans ses bornes antérieures à 2026 — *haute*
+
+Le pilote et l'ADR 0008 rapportent ce seuil « pérennisé au 2026-01-01 ; auparavant temporaire et
+plusieurs fois prorogé (bornes antérieures non relevées) », d'après une source secondaire
+(marche-public.fr) ; le script du pilote l'a appliqué depuis 2020 sans distinction.
+
+**Pourquoi ça casse.** Si ce seuil entre dans `config/seuils.fr.yaml` avec une date de début mal
+choisie, B1 cherche la bande 95 000–100 000 € sur des marchés de travaux notifiés pendant une période
+où le seuil applicable était de 40 000 €, et inversement ignore la bande 38 000–40 000 € : des signaux
+manqués ou fabriqués, à confiance haute, que ni `verify` (qui rejoue à l'identique) ni un test (écrit
+sur la même valeur) ne verront. Les résultats du pilote n'en dépendent pas : aucun marché de travaux
+de 2024-2025 des deux communes n'est dans l'une ou l'autre bande.
+
+**Ce qu'il faut faire.** L'auteur relève sur la source officielle (Légifrance ou DAJ) les décrets
+successifs et leurs dates avant toute écriture dans `config/` ; la PR des seuils de l'ADR 0008 cite
+chaque borne.
+
 ## 2026-11-09 — Révision de `critique-specification`, création de `hypotheses-structurantes`, première passe du registre (`.claude/skills/`, `docs/fondations/`, `docs/decisions/0004` à `0007`)
 
-### 1. Le seuil « environ 3 500 habitants » du registre est une estimation, pas une mesure — *moyenne*
+### ~~1. Le seuil « environ 3 500 habitants » du registre est une estimation, pas une mesure~~ — réglé le 2026-11-13 par le test T1 (PR #6, `docs/fondations/2026-11-13-t1.md`) : mesuré, la bascule est vers 4 000 à 5 000 habitants
 
 `docs/fondations/registre.md` (H3) et l'ADR 0005 proposent une tête de pont « communes ≥ 3 500
 habitants » à partir d'un calcul à publication parfaite (`c1_estimation.py`), faute de réseau pour
