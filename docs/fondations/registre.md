@@ -1,6 +1,6 @@
 # Hypothèses structurantes — registre
 
-Dernière passe : [2026-11-09](2026-11-09.md). Hors champ : règles 1, 2 et 3 de `CLAUDE.md`
+Dernière passe : [2026-11-09](2026-11-09.md). Dernier test : T1, [2026-11-13](2026-11-13-t1.md). Hors champ : règles 1, 2 et 3 de `CLAUDE.md`
 (décision de l'auteur, 2026-11-09). Tenu par la compétence `hypotheses-structurantes` ; une entrée
 par hypothèse, réécrite à chaque passe ; les numéros ne sont jamais réattribués. Chaque fait porte
 sa force (1 calcul, 2 usage révélé, 3 littérature, 4 analogue), sa source et sa date de consultation ;
@@ -10,7 +10,7 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
 | --- | --- | --- | --- | --- |
 | H1 | L'observation dissuade, même sans publication par le projet | infirmée | 2026-11-09 | ADR 0004 proposé |
 | H2 | Le citoyen curieux, non technique, disperse le projet | infirmée (pour la v1) | 2026-11-09 | ADR 0005 proposé |
-| H3 | Les DECP d'une commune suffisent à produire au moins un signal examinable | infirmée (sous ~3 500 hab.) ; à tester (chiffres exacts) | 2026-11-09 | ADR 0005 proposé |
+| H3 | Les DECP d'une commune suffisent à produire au moins un signal examinable | infirmée (sous ~4 000 à 5 000 hab., mesuré par T1) | 2026-11-13 | ADR 0005 proposé |
 | H4 | Le modèle OpenStreetMap attire et retient des contributeurs | à tester | 2026-11-09 | ADR 0006 proposé |
 | H5 | Les huit mesures de succès tirent dans le même sens | infirmée | 2026-11-09 | ADR 0004 proposé |
 | H6 | Le projet atteint seul ses premiers utilisateurs ; l'adossement attend la phase 3 | infirmée | 2026-11-09 | ADR 0006 proposé |
@@ -161,8 +161,9 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
   qu'une règle par acheteur ait de la matière, ou les champs requis manquent structurellement.
 - **Ce qui tomberait avec elle** : la tête de pont (communes de toutes tailles), le premier persona,
   le playbook de phase 1 tel qu'il promet.
-- **Statut** : infirmée pour les communes de moins d'environ 3 500 habitants ; à tester pour les
-  chiffres exacts par strate — 2026-11-09, première passe.
+- **Statut** : infirmée pour les communes de moins d'environ 4 000 à 5 000 habitants — 2026-11-13,
+  mesurée par le test T1 (2026-11-09, première passe : infirmée sous ~3 500 habitants, sur
+  estimation).
 - **Faits** :
   - [1] Dénominateur : 34 875 communes au 1er janvier 2025, dont 18 267 de moins de 500 habitants
     (52 %), 29 397 de moins de 2 000 (84 %), 3 228 de 3 500 et plus (9,3 %), 1 039 de 10 000 et plus
@@ -184,11 +185,21 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
     local en 2023 (21 920 M€ sur 44 930). — Baromètre Intercommunalités de France / Banque des
     Territoires, https://www.intercommunalites.fr/app/uploads/2024/10/V3_Barometre-commande-publique-2023_2024.pdf,
     consulté le 2026-11-09.
-  - [1, estimé] Sous hypothèses écrites (40 000 à 80 000 marchés communaux par an publiables,
-    répartis comme l'équipement, publication parfaite) : moins d'un marché en 36 mois par commune de
-    moins de 500 habitants ; 1,7 à 3,4 entre 500 et 2 000 ; 11 à 21 entre 3 500 et 10 000 ; 30 à 61
-    entre 10 000 et 30 000. Le seuil « au moins 10 marchés en 36 mois » n'est atteint qu'à partir
-    d'environ 3 500 habitants — 9 % des communes. Script `c1_estimation.py` en annexe de la passe.
+  - [1, mesuré] Marchés publiés en 36 mois (2023-11 → 2026-10) par commune, consolidé communautaire
+    du 2026-11-13 : part des communes ayant au moins 10 marchés — < 500 hab. : 1,0 % ; 500–2 000 :
+    6,8 % ; 2 000–3 500 : 26,0 % ; 3 500–10 000 : 60,2 % ; 10 000–30 000 : 90,3 % ; au-delà : 94 à
+    98 %. Moyennes : 0,5 ; 2,2 ; 7,4 ; 24,5 ; 94 ; 227 ; 885. La moitié des communes atteint 10
+    marchés vers 4 500 habitants (4 000 à 5 500 selon la variante : dédoublonnage inter-sources, seuil
+    de 40 000 €, fenêtre mûre, nombre d'offres renseigné). Parmi les communes de 500 à 3 500
+    habitants, 8 à 11 % ont au moins 10 marchés. EPCI : 79 % en ont au moins 10 (médiane 48) ;
+    départements : 95 % (médiane 485). L'estimation de la passe du 2026-11-09 était juste sous 3 500
+    habitants et sous-estimait les grandes communes d'un facteur 1,5 à 3. — Test T1,
+    [2026-11-13](2026-11-13-t1.md), scripts et empreintes des entrées en annexe.
+  - [1, mesuré] Qualité, marchés communaux de la même fenêtre (270 385) : nombre d'offres renseigné
+    pour 78,5 % (84 à 87 % des marchés notifiés en 2024 et 2025, 17 à 27 % de 2020 à 2023) ; une
+    seule offre pour 24,8 % de ceux où il l'est ; procédure 98,6 % ; titulaire 94,6 % ; doublons
+    probables entre sources 11,3 % ; montant < 40 000 € 18,7 %. — Test T1,
+    [2026-11-13](2026-11-13-t1.md).
   - [2] Couverture des acheteurs : « les données de seulement 7 700 acheteurs (sur un total de
     70 000) sont récupérées par le Ministère des finances » (mai 2021). —
     https://teamopendata.org/t/decp-info-les-donnees-de-la-commande-publique-pour-tous-questions-reponses-discussions/2948,
@@ -219,15 +230,19 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
     consulté le 2026-11-09. La source officielle « s'est presque tarie depuis le 1er janvier 2024 »
     (producteur du consolidé communautaire, janvier 2025 ; reprise quotidienne en janvier 2026). Toute
     fenêtre de 36 mois à cheval sur 2024 mesure la transition de format autant que les acheteurs.
+  - [1, mesuré] Le tarissement ne vaut pas pour le consolidé communautaire : 2024 (365 357 marchés) et
+    2025 (354 525) y sont les années les plus fournies, portées par le flux comptable de la DGFiP
+    (`pes_marche_2024`), qui fournit 47 % des marchés communaux récents et environ 68 % de ceux des
+    communes de moins de 3 500 habitants. Sa qualité propre n'est pas mesurée. — Test T1,
+    [2026-11-13](2026-11-13-t1.md).
 - **Argument contraire** : une DECP vide n'est pas rien : G1 en fait un signal (`docs/02` §6).
   Réponse : G1 exige le connecteur budget (phase 1), ne distingue pas la sous-publication de la
   faible activité, et un rapport dont le seul signal est « rien n'est publié » offre une action mince
-  ; sous 40 000 € HT l'absence est légale. Le statut tient pour les petites communes ; les chiffres
-  exacts par strate restent à mesurer.
-- **Test ou pilote** : test T1 (une journée, avec réseau) : exécuter `c1_detectabilite.py`,
-  `c2_completude.py` et `c3_volumes.py` (annexe de la passe) sur le Parquet consolidé, Sirene et les
-  populations INSEE ; falsifié si la part des communes de 500 à 3 500 habitants avec ≥ 10 marchés sur
-  36 mois dépasse la moitié. Et pilote A (audit à la main), exécuté par l'agent dès qu'une session a
+  ; sous 40 000 € HT l'absence est légale. Le statut tient pour les petites communes ; T1 l'a mesuré
+  (2026-11-13).
+- **Test ou pilote** : test T1 **exécuté le 2026-11-13** ([compte rendu](2026-11-13-t1.md)) : le
+  critère de falsification de l'alternative (plus de la moitié des communes de 500 à 3 500 habitants
+  avec ≥ 10 marchés sur 36 mois) n'est pas atteint — 8 à 11 %. Reste le pilote A (audit à la main), exécuté par l'agent dès qu'une session a
   le réseau (voir « Pilote A » en fin de registre) : T1 donne la distribution, le pilote A donne ce
   qui sort réellement pour une institution.
 - **Alternative** (recommandée) : tête de pont de la phase 1 = **communes de 3 500 habitants et
@@ -235,7 +250,10 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
   pas dire pour une petite commune. Sert : « nombre d'institutions ayant fait l'objet d'au moins un
   audit » (vrais audits, pas des rapports vides), « pistes confirmées ». Impact : concentre la phase 1
   sur les 9 % de communes qui portent 68 % de l'équipement et sur des institutions moins visibles
-  que les communes. Coût : une ligne de `docs/01`, les strates de `config/strates.fr.yaml`, l'en-tête
+  que les communes. T1 place la bascule plutôt vers 4 000 à 5 000 habitants (60 % des communes de
+  3 500 à 10 000 habitants ont au moins 10 marchés, 41,5 % dans la tranche 3 500–4 000) : la borne de
+  3 500, tranche de la DGCL, reste défendable, mais le chiffre exact revient à l'auteur dans l'ADR
+  0005. Coût : une ligne de `docs/01`, les strates de `config/strates.fr.yaml`, l'en-tête
   du playbook ; texte seul.
 - **Décision** : ADR 0005 proposé.
 
@@ -548,7 +566,7 @@ tous ont été rouverts par la session avant d'entrer ici. Aucune institution pu
 | A — L'audit à la main | H2, H3, H10, promesse « quinze minutes » | **agent, avec réseau** (décision de l'auteur, 2026-11-09) ; la question finale reste à l'auteur | 3 à 5 h | [2026-11-09](2026-11-09.md) et « Pilote A » ci-dessous |
 | B — Un rapport, une personne | H1, H5, H6, H7, engagement 4 | auteur (un agent ne peut pas être le destinataire) | 2 h + 4 semaines d'attente | [2026-11-09](2026-11-09.md) |
 | C — Une fiche, un contributeur | H4, « 20 lignes de YAML » | auteur + une personne extérieure | 1 h + 1 à 2 h | [2026-11-09](2026-11-09.md) |
-| T1 — Détectabilité par strate (test agent) | H3 | agent, avec réseau | 1 jour | [2026-11-09](2026-11-09.md), annexe |
+| T1 — Détectabilité par strate (test agent) | H3 | agent, avec réseau — **exécuté le 2026-11-13** | 1 heure | [2026-11-09](2026-11-09.md) ; résultat : [2026-11-13](2026-11-13-t1.md) |
 
 ### Pilote A — exécution par l'agent (ajouté le 2026-11-09, après la passe)
 
