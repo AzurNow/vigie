@@ -109,6 +109,25 @@ exécutions.
 **Les scripts jetables vivent hors du dépôt.** (Banc) Génération et validation ponctuelles : dans le
 répertoire temporaire de la session, jamais dans le dépôt.
 
+**Ce qui doit être relu plus tard va dans le dépôt ; le répertoire temporaire ne survit pas à la
+session.** La première passe `hypotheses-structurantes` promettait que les faits relevés mais non
+vérifiés « pourront être vérifiés à la prochaine passe » depuis ses fichiers de travail — qui
+disparaissent avec la session. Corrigé avant fusion : ce qui compte est dans la passe (titres des
+sources), le reste n'existe plus et on le dit.
+
+**Vérifier le réseau du shell à l'étape 0 d'une passe qui doit calculer, et écrire d'avance ce
+qu'elle fera sans.** Le sous-agent « calculs » de la première passe du registre devait télécharger les
+DECP consolidées ; le réseau du shell était coupé et il a dû se rabattre sur des agrégats publiés et une
+estimation sous hypothèses. Le résultat est utilisable parce qu'il est étiqueté, mais la compétence ne
+l'avait pas prévu (`docs/DETTE.md`, 2026-11-09, point 2).
+
+**Un site qui refuse les accès automatisés se remplace par une autre source, il ne se contourne
+pas.** Pour les seuils du pilote A, le site de la DAJ répondait 403 ; une requête avec un en-tête de
+navigateur a été refusée par le mode auto (« Bot Check Circumvention »), conformément à `CLAUDE.md`.
+Les pages d'articles de marche-public.fr, qui reprennent Légifrance, ont suffi, étiquetées comme
+source secondaire. Ne pas non plus deviner des URL : un sous-agent a perdu son tour sur un chemin
+inventé (404) ; partir des liens d'une page qui répond.
+
 **Ne pas écrire de contenu accentué multi-ligne par heredoc dans le shell de l'agent.** (Banc) Sur
 la machine de l'auteur, l'enveloppe shell de l'agent digérait mal un heredoc avec accents et
 guillemets (`unexpected EOF`). Utiliser l'outil d'écriture de fichier.
@@ -130,6 +149,18 @@ refusé le `push --force-with-lease` d'une branche rebasée ; une fusion de `mai
 ordinaire.
 
 ## Méthode
+
+**Ne pas nommer une institution, c'est aussi ne pas la rendre identifiable.** Le compte rendu du
+pilote A (2026-11-13) ne nommait aucune commune, mais citait des montants au centime, des populations
+exactes, un profil d'acheteur départemental et la graine du tirage : chacun suffisait à retrouver la
+commune dans le consolidé public. Vu à la clôture, après deux commits poussés sur un dépôt public.
+Dans tout ce qui remonte au dépôt sur une institution réelle : montants en tranches, dates à l'année,
+populations en strates, aucune graine ni source qui localise.
+
+**Vérifier une agrégation en recomptant à la main un groupe qu'on connaît.** La règle B2 du pilote A
+groupait la fenêtre glissante sans l'identifiant du marché d'ancrage : trois lots notifiés le même
+jour comptaient chacun trois fois (599 194 € au lieu de 199 731 €). L'écart s'est vu parce que la
+somme des trois lots était connue ; sans ce recomptage, B2 aurait affiché des sommes triplées.
 
 **Lire `state = MERGED` avant toute suppression de branche, et ne rien chaîner derrière une fusion
 avec `;`.** (Banc) `gh pr checks --watch` est sorti en code 0 sur une erreur réseau ; la fusion a été
@@ -208,6 +239,14 @@ personne. Pour chaque compétence importée : chercher les mots de `docs/01` («
 « Utilisateurs cibles ») dans son texte ; s'ils n'y sont pas, c'est elle qu'il faut adapter.
 
 ### Sous-agents
+
+**Rouvrir chaque source qu'un sous-agent cite avant de s'en servir : la citation peut dire le
+contraire de la source.** Première passe `hypotheses-structurantes` : sur 55 faits du relevé du
+monde, 9 ne tenaient pas à la relecture par la session — dont « DoZorro n'utilise pas d'IA pour les
+red flags » alors que la page citée dit qu'il a été « le premier à tester l'apprentissage
+automatique », et des limites d'une base *traitée* présentées comme la qualité des données brutes.
+Non rouverts, ces faits auraient porté des statuts du registre. Les sources non rouvertes n'entrent
+pas au registre, même plausibles.
 
 **Un brief qui liste ses cas limites en liste fermée et ses questions déjà tranchées revient sans
 question.** (Banc) 28 cas limites numérotés, sept hésitations réglées d'avance : rapport sans question
